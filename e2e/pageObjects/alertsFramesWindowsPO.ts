@@ -1,7 +1,6 @@
 import { expect, Locator, Page } from '@playwright/test';
-import { Support } from "../common/constants";
+import Constants from '../common/constants.json';
 
-let support: Support;
 
 export class AlertsFramesWindowsPO {
     readonly page: Page;
@@ -14,12 +13,10 @@ export class AlertsFramesWindowsPO {
         this.alertsBtn = page.locator(`//div[text()='Alerts, Frame & Windows']`);
         this.alertsHeaderBtn = page.locator(`//span[text()='Alerts']`);
         this.modalDialogBtn = page.locator(`//span[text()='Modal Dialogs']`)
-
-        support = new Support();
     }
 
     async baseURL() {
-        await this.page.goto(support.homePageURL);
+        await this.page.goto(Constants.homePageURL);
     }
     async clickAlertsFrameWindowsBtn() {
         await this.alertsBtn.click();

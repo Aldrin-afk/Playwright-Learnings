@@ -1,25 +1,22 @@
 import { chromium, expect, test, Page, Browser } from "@playwright/test";
-import { Support } from "../../common/constants";
 import { AlertsFramesWindowsPO } from "../../PageObjects/alertsFramesWindowsPO";
 
 let page: Page;
 let browser, context: any;
 let alertsPO: AlertsFramesWindowsPO;
-let support: Support;
 
 test.beforeAll(async () => {
     browser = await chromium.launch();
     context = await browser.newContext();
     page = await context.newPage();
     alertsPO = new AlertsFramesWindowsPO(page);
-    support = new Support();
 });
 
 test("Verification of Dynamic Properties DEMOQA", async () => {
 
 
     await page.goto('https://demoqa.com/dynamic-properties');
-    await page.waitForTimeout(2000);
+    await page.waitForLoadState('load');
 
     const firstButtonDisabled = await page.$('button#enableAfter');
     const isDisabled = await firstButtonDisabled?.isDisabled();
@@ -30,9 +27,9 @@ test("Verification of Dynamic Properties DEMOQA", async () => {
     const currentColor = await button?.evaluate((el) => getComputedStyle(el).color);
     console.log(currentColor);
 
-    const thirdButtonNotVisible = await page.$('button#enableAfter');
-    const isNotVisible = await thirdButtonNotVisible?.isDisabled();
-    expect(isNotVisible).toBeTruthy();
+    const thirdButtonNotVisible = await page.$('button#visibleAfter');
+    const isNotVisible = await thirdButtonNotVisible?.isHidden();
+    expect(isNotVisible).toBeUndefined();
     console.log('The button is Hidden!');
 
     await page.waitForTimeout(4000);
