@@ -282,28 +282,28 @@ export class ElementsPO {
         await this.addNewRecord.click();
     }
     async fillRegForm() {
-        const fName = await this.userNameHeader.textContent();
-        expect(fName).toContain('First Name');
-        await this.userNameInputBox.fill(Constants.TestData.Fname);
+        const fName = await this.firstNameHeader.textContent();
+        expect(fName).toBe('First Name');
+        await this.firstNameInputBox.fill(Constants.TestData.Fname);
 
         const lName = await this.lastNameHeader.textContent();
-        expect(lName).toContain('Last Name');
+        expect(lName).toBe('Last Name');
         await this.lastNameInputBox.fill(Constants.TestData.Lname);
 
         const email = await this.userEmailHeader.textContent();
-        expect(email).toContain('Email');
+        expect(email).toBe('Email');
         await this.userEmailInputBox.fill(Constants.TestData.Email);
 
         const age = await this.ageHeader.textContent();
-        expect(age).toContain('Age');
+        expect(age).toBe('Age');
         await this.ageInputBox.fill(Constants.TestData.age);
 
         const salary = await this.salaryHeader.textContent();
-        expect(salary).toContain('Salary');
+        expect(salary).toBe('Salary');
         await this.salaryInputBox.fill(Constants.TestData.salary);
 
         const department = await this.departmentHeader.textContent();
-        expect(department).toContain('Department');
+        expect(department).toBe('Department');
         await this.departmentInputBox.fill(Constants.TestData.department);
     }
     async fillSearchBox() {
