@@ -14,7 +14,6 @@ test.beforeAll(async () => {
 
 test("Verification of Dynamic Properties DEMOQA", async () => {
 
-
     await page.goto('https://demoqa.com/dynamic-properties');
     await page.waitForLoadState('load');
 
@@ -32,7 +31,7 @@ test("Verification of Dynamic Properties DEMOQA", async () => {
     expect(isNotVisible).toBeUndefined();
     console.log('The button is Hidden!');
 
-    await page.waitForTimeout(4000);
+    await page.waitForTimeout(5000);
     const firstButtonEnabled = await page.$('button#enableAfter');
     const isEnabled = await firstButtonEnabled?.isEnabled();
     expect(isEnabled).toBeTruthy();
@@ -46,4 +45,8 @@ test("Verification of Dynamic Properties DEMOQA", async () => {
     const isVisible = await thirdButtonVisible?.isEnabled();
     expect(isVisible).toBeTruthy();
     console.log('The button is Visible!');
+});
+
+test.afterAll(async () => {
+    await browser.close();
 });

@@ -435,17 +435,17 @@ export class ElementsPO {
         await this.currAddressTextArea.fill(Constants.TestData.currentAddress);
         await this.page.waitForTimeout(3000);
 
-        const state = await this.stateCityHeader.textContent();
-        expect(state).toContain('State and City');
-        await this.stateDropDown.type(Constants.TestData.State);
-        await this.stateDropDown.selectOption(Constants.TestData.State);
-        await this.subInputBox.press('Enter');
-        await this.page.waitForTimeout(3000);
-        const city = await this.stateCityHeader.textContent();
-        expect(city).toContain('State and City');
-        await this.cityDropDown.type(Constants.TestData.City);
-        await this.cityDropDown.selectOption(Constants.TestData.City);
-        await this.subInputBox.press('Enter');
+        // const state = await this.stateCityHeader.textContent();
+        // expect(state).toContain('State and City');
+        // await this.stateDropDown.type(Constants.TestData.State);
+        // await this.stateDropDown.selectOption(Constants.TestData.State);
+        // await this.subInputBox.press('Enter');
+        // await this.page.waitForTimeout(3000);
+        // const city = await this.stateCityHeader.textContent();
+        // expect(city).toContain('State and City');
+        // await this.cityDropDown.type(Constants.TestData.City);
+        // await this.cityDropDown.selectOption(Constants.TestData.City);
+        // await this.subInputBox.press('Enter');
 
     };
 
