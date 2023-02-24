@@ -1,4 +1,4 @@
-import { chromium, expect, test, Page, Browser } from "@playwright/test";
+import { chromium, expect, test, Page } from "@playwright/test";
 import Constants from '../../common/constants.json';
 import { ButtonsPO } from "../../PageObjects/buttonsPO";
 

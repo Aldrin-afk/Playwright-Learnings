@@ -1,4 +1,4 @@
-import { chromium, expect, test, Page, Browser } from "@playwright/test";
+import { chromium, expect, test, Page } from "@playwright/test";
 import Constants from '../../common/constants.json';
 import { WebTablesPO } from "../../PageObjects/webTablesPO";
 
@@ -32,7 +32,7 @@ test("Verification of Web Tables DEMOQA", async () => {
     expect(rowBody).not.toContain(`KierraGentry29kierra@example.com2000Legal`);
 
     await webTablesPO.clickAddRecordBtn();
-    await webTablesPO.fillRegForm(Constants.TestData.Fname,Constants.TestData.Lname,Constants.TestData.Email,Constants.TestData.age,Constants.TestData.salary,Constants.TestData.department);
+    await webTablesPO.fillRegForm(Constants.TestData.Fname, Constants.TestData.Lname, Constants.TestData.Email, Constants.TestData.age, Constants.TestData.salary, Constants.TestData.department);
     await webTablesPO.submitButton();
 
     await webTablesPO.fillSearchBox(Constants.TestData.Fname);

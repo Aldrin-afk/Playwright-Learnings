@@ -1,4 +1,4 @@
-import { expect, Locator, Page } from '@playwright/test';
+import { expect, Page } from '@playwright/test';
 import Constants from '../common/constants.json';
 
 
@@ -134,5 +134,4 @@ export class PracticeFormPO {
     async submitButton() {
         await this.subBtn.click();
     }
-
 }

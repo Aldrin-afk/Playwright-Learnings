@@ -42,6 +42,7 @@ export class WebTablesPO {
         this.subBtn = this.page.locator(`button[id="submit"]`);
 
     }
+    
     async baseURL() {
         await this.page.goto(Constants.homePageURL);
     }
@@ -91,5 +92,4 @@ export class WebTablesPO {
     async submitButton() {
         await this.subBtn.click();
     }
-
 }

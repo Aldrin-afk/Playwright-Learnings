@@ -1,4 +1,4 @@
-import { expect, Locator, Page } from '@playwright/test';
+import { Locator, Page } from '@playwright/test';
 import Constants from '../common/constants.json';
 
 export class CheckBoxPO {
@@ -44,7 +44,7 @@ export class CheckBoxPO {
     async clickCollapseBtn() {
         await this.collapseBtn.click();
     }
-    
+
     async clickToggleBtn() {
         await this.toggleBtn.nth(0).click();
     }

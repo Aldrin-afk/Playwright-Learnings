@@ -1,4 +1,4 @@
-import { expect, Locator, Page } from '@playwright/test';
+import { Locator, Page } from '@playwright/test';
 import Constants from '../common/constants.json';
 
 
@@ -50,7 +50,7 @@ export class ButtonsPO {
     async rbuttonResult() {
         return await this.rightClickMessage.allTextContents();
     }
-    
+
     async dynbuttonResult() {
         return await this.dynamicClickMessage.allTextContents();
     }

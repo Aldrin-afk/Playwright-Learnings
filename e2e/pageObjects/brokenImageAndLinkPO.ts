@@ -1,4 +1,4 @@
-import { expect, Locator, Page } from '@playwright/test';
+import { Page } from '@playwright/test';
 import Constants from '../common/constants.json';
 
 
@@ -11,7 +11,7 @@ export class BrokenImageLinkPO {
 
     async baseURL() {
         await this.page.goto(Constants.homePageURL);
-    }  
+    }
 
     async clickBrokenLinksImageBtn() {
         await this.page.locator(`//span[text()='Broken Links - Images']`).click();
@@ -28,7 +28,7 @@ export class BrokenImageLinkPO {
     async validLinkHeader() {
         return await this.page.locator(`//p[text()='Valid Link']`).textContent();
     }
-    
+
     async brokenLinkHeader() {
         return await this.page.locator(`//p[text()='Broken Link']`).textContent();
     }

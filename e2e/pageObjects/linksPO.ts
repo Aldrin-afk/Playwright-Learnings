@@ -1,4 +1,4 @@
-import { expect, Locator, Page } from '@playwright/test';
+import { Locator, Page } from '@playwright/test';
 import Constants from '../common/constants.json';
 
 export class LinksPO {
@@ -73,7 +73,7 @@ export class LinksPO {
     async clickHomePageBtn() {
         await this.homeUrlBtn.click();
     }
-    
+
     async clickHomePageDynBtn() {
         await this.homeUrlBtn2.click();
     }
