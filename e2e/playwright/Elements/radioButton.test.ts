@@ -1,32 +1,32 @@
 import { chromium, expect, test, Page, Browser } from "@playwright/test";
 import Constants from '../../common/constants.json';
-import { ElementsPO } from "../../PageObjects/elementsPO";
+import { RadioButtonPO } from "../../PageObjects/radioButtonPO";
 
 let page: Page;
 let browser, context: any;
-let elementsPO: ElementsPO;
+let radioButtonPO: RadioButtonPO;
 
 test.beforeAll(async () => {
     browser = await chromium.launch();
     context = await browser.newContext();
     page = await context.newPage();
-    elementsPO = new ElementsPO(page);
+    radioButtonPO = new RadioButtonPO(page);
 });
 
 test("Verification of Radio Button DEMOQA", async () => {
-    await elementsPO.baseURL();
+    await radioButtonPO.baseURL();
     await expect(page).toHaveURL(Constants.webSiteURL);
-    await elementsPO.clickRadioButtonBtn();
-    const headerTitle = await elementsPO.radioBtnHeader();
+    await radioButtonPO.clickRadioButtonBtn();
+    const headerTitle = await radioButtonPO.radioBtnHeader();
     expect(headerTitle).toContain(Constants.TestData.radioButtonHeader);
 
-    await elementsPO.clickYesRadioBtn();
-    const radio1 = await elementsPO.radioResult();
+    await radioButtonPO.clickYesRadioBtn();
+    const radio1 = await radioButtonPO.radioResult();
     expect(radio1.toString()).toBe(`Yes`);
-    await elementsPO.clickImpressiveRadioBtn();
-    const radio2 = await elementsPO.radioResult();
+    await radioButtonPO.clickImpressiveRadioBtn();
+    const radio2 = await radioButtonPO.radioResult();
     expect(radio2.toString()).toBe(`Impressive`);
-    await elementsPO.noRadioBtn();
+    await radioButtonPO.noRadioBtn();
 });
 
 test.afterAll(async () => {

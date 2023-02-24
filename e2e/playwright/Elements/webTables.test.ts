@@ -1,28 +1,28 @@
 import { chromium, expect, test, Page, Browser } from "@playwright/test";
 import Constants from '../../common/constants.json';
-import { ElementsPO } from "../../PageObjects/elementsPO";
+import { WebTablesPO } from "../../PageObjects/webTablesPO";
 
 let page: Page;
 let browser, context: any;
-let elementsPO: ElementsPO;
+let webTablesPO: WebTablesPO;
 
 test.beforeAll(async () => {
     browser = await chromium.launch();
     context = await browser.newContext();
     page = await context.newPage();
-    elementsPO = new ElementsPO(page);
+    webTablesPO = new WebTablesPO(page);
 });
 
 test("Verification of Web Tables DEMOQA", async () => {
-    await elementsPO.baseURL();
+    await webTablesPO.baseURL();
     await expect(page).toHaveURL(Constants.webSiteURL);
-    await elementsPO.clickWebTableBtn();
+    await webTablesPO.clickWebTableBtn();
 
     await page.locator(`span#edit-record-2`).click();
     const fName = await page.locator(`label[id="firstName-label"]`).textContent();
     expect(fName).toBe('First Name');
     await page.locator(`input[id="firstName"]`).fill(`Francis`);
-    await elementsPO.submitButton();
+    await webTablesPO.submitButton();
     const editedRow = await page.locator(`div.rt-tbody`).allTextContents();
     expect(editedRow.toString()).not.toContain(`AldenCantrell45alden@example.com12000Compliance`);
     expect(editedRow.toString()).toContain("CierraVega39cierra@example.com10000Insurance FrancisCantrell45alden@example.com12000Compliance KierraGentry29kierra@example.com2000Legal");
@@ -31,12 +31,12 @@ test("Verification of Web Tables DEMOQA", async () => {
     const rowBody = await page.locator(`div.rt-tbody`).allTextContents();
     expect(rowBody).not.toContain(`KierraGentry29kierra@example.com2000Legal`);
 
-    await elementsPO.clickAddRecordBtn();
-    await elementsPO.fillRegForm();
-    await elementsPO.submitButton();
+    await webTablesPO.clickAddRecordBtn();
+    await webTablesPO.fillRegForm(Constants.TestData.Fname,Constants.TestData.Lname,Constants.TestData.Email,Constants.TestData.age,Constants.TestData.salary,Constants.TestData.department);
+    await webTablesPO.submitButton();
 
-    await elementsPO.fillSearchBox();
-    await elementsPO.verifyTableByFilter();
+    await webTablesPO.fillSearchBox(Constants.TestData.Fname);
+    await webTablesPO.verifyTableByFilter(Constants.TestData.verifyTable);
 });
 
 test.afterAll(async () => {

@@ -1,4 +1,4 @@
-import { chromium, expect, test, Page, Browser } from "@playwright/test";
+import { chromium, expect, test, Page } from "@playwright/test";
 import { AlertsFramesWindowsPO } from "../../PageObjects/alertsFramesWindowsPO";
 
 let page: Page;

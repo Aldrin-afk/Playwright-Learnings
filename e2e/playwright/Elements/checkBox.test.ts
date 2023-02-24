@@ -1,34 +1,34 @@
 import { chromium, expect, test, Page, Browser } from "@playwright/test";
 import Constants from '../../common/constants.json';
-import { ElementsPO } from "../../PageObjects/elementsPO";
+import { CheckBoxPO } from "../../PageObjects/checkBoxPO";
 
 let page: Page;
 let browser, context: any;
-let elementsPO: ElementsPO;
+let checkBoxPO: CheckBoxPO;
 
 test.beforeAll(async () => {
     browser = await chromium.launch();
     context = await browser.newContext();
     page = await context.newPage();
-    elementsPO = new ElementsPO(page);
+    checkBoxPO = new CheckBoxPO(page);
 });
 
 test("Verification of CheckBox DEMOQA", async () => {
-    await elementsPO.baseURL();
+    await checkBoxPO.baseURL();
     await expect(page).toHaveURL(Constants.webSiteURL);
-    await elementsPO.clickCheckBoxBtn();
+    await checkBoxPO.clickCheckBoxBtn();
     await page.locator(`(//span[@class='rct-title'])[1]`).uncheck();
-    await elementsPO.clickHomeCheckBox();
-    const result = await elementsPO.dispResult();
+    await checkBoxPO.clickHomeCheckBox();
+    const result = await checkBoxPO.dispResult();
     expect(result).toBe("You have selected :homedesktopnotescommandsdocumentsworkspacereactangularveuofficepublicprivateclassifiedgeneraldownloadswordFileexcelFile");
-    await elementsPO.clickExpandBtn();
+    await checkBoxPO.clickExpandBtn();
     await page.locator(`(//span[@class='rct-title'])[1]`).check();
     await page.locator(`//span[text()='Desktop']`).click();
     await page.locator(`//span[text()='Desktop']`).uncheck();
-    const result1 = await elementsPO.dispResult();
+    const result1 = await checkBoxPO.dispResult();
     expect(result1).toBe("You have selected :documentsworkspacereactangularveuofficepublicprivateclassifiedgeneraldownloadswordFileexcelFile");
-    await elementsPO.clickToggleBtn();
-    await elementsPO.clickCollapseBtn();
+    await checkBoxPO.clickToggleBtn();
+    await checkBoxPO.clickCollapseBtn();
 });
 
 test.afterAll(async () => {

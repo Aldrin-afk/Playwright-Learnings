@@ -1,25 +1,25 @@
 import { chromium, expect, test, Page } from "@playwright/test";
 import Constants from '../../common/constants.json';
-import { ElementsPO } from "../../PageObjects/elementsPO";
+import { BrokenImageLinkPO } from "../../PageObjects/brokenImageAndLinkPO";
 
 let page: Page;
 let browser, context: any;
-let elementsPO: ElementsPO;
+let brokenImageLinkPO: BrokenImageLinkPO;
 
 test.beforeAll(async () => {
   browser = await chromium.launch();
   context = await browser.newContext();
   page = await context.newPage();
-  elementsPO = new ElementsPO(page);
+  brokenImageLinkPO = new BrokenImageLinkPO(page);
 });
 
 test("Verification of BrokenImage and Links DEMOQA", async () => {
   test.slow();
 
-  await elementsPO.baseURL();
+  await brokenImageLinkPO.baseURL();
   await expect(page).toHaveURL(Constants.webSiteURL);
   page.keyboard.down('PageDown');
-  await elementsPO.clickBrokenLinksImageBtn();
+  await brokenImageLinkPO.clickBrokenLinksImageBtn();
 
   const validImage = await page.$(`//p[text()='Valid image']/following-sibling::img`);
   expect(validImage).not.toBeNull(); // check that the image element exists
@@ -31,13 +31,13 @@ test("Verification of BrokenImage and Links DEMOQA", async () => {
   expect(await brokenImage?.evaluate((bimg) => (bimg as HTMLImageElement).complete)).not.toBeTruthy(); // check if the image has loaded successfully
   expect(await brokenImage?.getAttribute('src')).not.toBeNull(); // check that the image has a valid 'src' attribute
 
-  await elementsPO.baseURL();
+  await brokenImageLinkPO.baseURL();
   await expect(page).toHaveURL(Constants.webSiteURL);
   page.keyboard.down('PageDown');
-  await elementsPO.clickBrokenLinksImageBtn();
-  let vlink = await elementsPO.validLinkHeader();
+  await brokenImageLinkPO.clickBrokenLinksImageBtn();
+  let vlink = await brokenImageLinkPO.validLinkHeader();
   expect(vlink).toBe('Valid Link');
-  await elementsPO.clickValidLink();
+  await brokenImageLinkPO.clickValidLink();
   let validurl = page.url();
   expect(validurl).toBe('https://demoqa.com/');
   await page.waitForLoadState('load');
@@ -45,9 +45,9 @@ test("Verification of BrokenImage and Links DEMOQA", async () => {
   const status = await page.evaluate(() => document.readyState);
   console.log(`Page status: ${status}`);
   await page.goBack();
-  let blink = await elementsPO.brokenLinkHeader();
+  let blink = await brokenImageLinkPO.brokenLinkHeader();
   expect(blink).toBe('Broken Link');
-  await elementsPO.clickBrokenLink();
+  await brokenImageLinkPO.clickBrokenLink();
   await page.waitForLoadState('load');
   console.log(await page.title());
   const status1 = await page.evaluate(() => document.readyState);
