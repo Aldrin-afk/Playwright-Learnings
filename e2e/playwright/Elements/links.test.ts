@@ -14,7 +14,6 @@ test.beforeAll(async () => {
 });
 
 test("Verification of Links DEMOQA", async () => {
-    test.slow();
     await linksPO.baseURL();
     await expect(page).toHaveURL(Constants.webSiteURL);
     await linksPO.clickLinksBtn();

@@ -1,28 +1,27 @@
-import { chromium, expect, test, Page, Browser } from "@playwright/test";
+import { chromium, expect, test, Page } from "@playwright/test";
 import Constants from '../../common/constants.json';
-import { AlertsFramesWindowsPO } from "../../PageObjects/alertsFramesWindowsPO";
+import { browserWindowsPO } from "../../PageObjects/AlFrWinPO's/browserWindowsPO";
 
 let page: Page;
-let pages, browser, context: any;
-let alertsPO: AlertsFramesWindowsPO;
+let browser, context: any;
+let browserPO: browserWindowsPO;
 
 test.beforeAll(async () => {
     browser = await chromium.launch();
     context = await browser.newContext();
     page = await context.newPage();
-    alertsPO = new AlertsFramesWindowsPO(page);
+    browserPO = new browserWindowsPO(page);
 });
 
 test("Verification of BrowserWindows DEMOQA", async () => {
-    await alertsPO.baseURL();
+    await browserPO.baseURL();
     await expect(page).toHaveURL(Constants.webSiteURL);
-    await page.goto('https://demoqa.com/elements');
     await page.getByText('Alerts, Frame & Windows').click();
     await page.getByText('Browser Windows').click();
 
-    await alertsPO.toClickAndVerifyNewTab();
-    await alertsPO.toClickAndVerifyNewWindow();
-    await alertsPO.toClickAndVerifyNewWindowMessage();
+    await browserPO.toClickAndVerifyNewTab();
+    await browserPO.toClickAndVerifyNewWindow();
+    await browserPO.toClickAndVerifyNewWindowMessage();
 });
 
 test.afterAll(async () => {

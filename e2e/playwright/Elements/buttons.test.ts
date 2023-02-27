@@ -14,7 +14,6 @@ test.beforeAll(async () => {
 });
 
 test("Verification of Buttons DEMOQA", async () => {
-    test.slow();
     await buttonsPO.baseURL();
     await expect(page).toHaveURL(Constants.webSiteURL);
     await buttonsPO.clickRadioBtn();

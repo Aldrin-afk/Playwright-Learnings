@@ -14,8 +14,6 @@ test.beforeAll(async () => {
 });
 
 test("Verification of BrokenImage and Links DEMOQA", async () => {
-  test.slow();
-
   await brokenImageLinkPO.baseURL();
   await expect(page).toHaveURL(Constants.webSiteURL);
   page.keyboard.down('PageDown');

@@ -14,7 +14,6 @@ test.beforeAll(async () => {
 });
 
 test("Verification of TextBox DEMOQA", async () => {
-    test.slow();
     await textBoxPO.baseURL();
     await expect(page).toHaveURL(Constants.webSiteURL);
     await textBoxPO.clickTextBoxBtn();
