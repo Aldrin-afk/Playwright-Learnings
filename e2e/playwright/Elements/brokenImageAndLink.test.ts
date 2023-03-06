@@ -1,9 +1,9 @@
-import { chromium, expect, test, Page } from "@playwright/test";
+import { chromium, expect, test, Page, Browser } from "@playwright/test";
 import Constants from '../../common/constants.json';
 import { BrokenImageLinkPO } from "../../PageObjects/brokenImageAndLinkPO";
 
 let page: Page;
-let browser, context: any;
+let browser: Browser, context: any;
 let brokenImageLinkPO: BrokenImageLinkPO;
 
 test.beforeAll(async () => {

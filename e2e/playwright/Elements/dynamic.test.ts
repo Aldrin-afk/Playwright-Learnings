@@ -1,15 +1,12 @@
-import { chromium, expect, test, Page } from "@playwright/test";
-import { AlertsFramesWindowsPO } from "../../PageObjects/alertsFramesWindowsPO";
+import { chromium, expect, test, Page, Browser } from "@playwright/test";
 
 let page: Page;
-let browser, context: any;
-let alertsPO: AlertsFramesWindowsPO;
+let browser: Browser, context: any;
 
 test.beforeAll(async () => {
     browser = await chromium.launch();
     context = await browser.newContext();
     page = await context.newPage();
-    alertsPO = new AlertsFramesWindowsPO(page);
 });
 
 test("Verification of Dynamic Properties DEMOQA", async () => {

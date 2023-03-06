@@ -13,6 +13,7 @@ const config: PlaywrightTestConfig = {
   },
   /* Maximum time one test can run for. */
   timeout: 300 * 1000,
+  workers: 1,
   expect: {
     /**
      * Maximum time expect() should wait for the condition to be met.

@@ -1,9 +1,9 @@
-import { chromium, expect, test, Page } from "@playwright/test";
+import { chromium, expect, test, Page, Browser } from "@playwright/test";
 import Constants from '../../common/constants.json';
 import { LinksPO } from "../../PageObjects/linksPO";
 
 let page: Page;
-let pages, browser, context: any;
+let pages, browser: Browser, context: any;
 let linksPO: LinksPO;
 
 test.beforeAll(async () => {
