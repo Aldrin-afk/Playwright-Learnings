@@ -21,9 +21,6 @@ test("Verification of Menu DEMOQA", async () => {
     const menuItem = 'Main Item 2';
     const subItem = "SUB SUB LIST »";
     const subSubItem = "Sub Sub Item 1";
-
-    // Wait for the page to load
-    await page.waitForLoadState('networkidle');
     
     // Find the menu item
     const menuButton = await page.$(`//ul[@id='nav']//a[text()='${menuItem}']`);

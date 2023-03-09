@@ -16,7 +16,6 @@ test.beforeAll(async () => {
 const filepath = 'sample.jpeg'
 
 test("Verification of Upload and Download DEMOQA", async () => {
-
     await uploadDownloadPO.baseURL();
     await expect(page).toHaveURL(Constants.webSiteURL);
 

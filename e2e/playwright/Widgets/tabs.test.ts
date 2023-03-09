@@ -36,7 +36,6 @@ test("Verification of Tabs DEMOQA", async () => {
         console.log("The tab is active and verified:", activeTabText); //Print the active tab name
         console.log('Tab Content displayed:', tabContent);             //Print the Tab Content displayed
     }
-
 });
 
 test.afterAll(async () => {

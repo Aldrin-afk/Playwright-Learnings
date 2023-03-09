@@ -28,7 +28,6 @@ test("Verification of TextBox DEMOQA", async () => {
     await textBoxPO.submitButton();
     let result = await textBoxPO.textResult();
     expect(result.toString()).toBe(`Name:${Constants.TestData.Fname}Email:${Constants.TestData.Email}Current Address :${Constants.TestData.currentAddress} Permananet Address :${Constants.TestData.permanentAddress}`);
-    // await new Promise(() => { });
 });
 
 test.afterAll(async () => {
