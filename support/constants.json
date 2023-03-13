@@ -1,0 +1,25 @@
+{
+    "Credentials": {
+        "stdUser": "Admin",
+        "password": "admin123"
+    },
+    "Urls": {
+        "login": "/.*login/",
+        "dashboard": "/.*dashboard/"
+    },
+    "TitleVerification": {
+        "loginPageTitle": "OrangeHRM"
+    },
+    "sucessMsg": {
+        "successfulUpdatedMsg": "Successfully Updated",
+        "successfulDeletedMsg": "Successfully Deleted",
+        "sucessfulSavedMsg": "Successfully Saved"
+    },
+    "fillText": {
+        "comment": "Text file has been uploaded"
+    },
+    "popupText": {
+        "text": "The selected record will be permanently deleted. Are you sure you want to continue?"
+    },
+    "noRecordsText": "No Records Found"
+}

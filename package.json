@@ -1,0 +1,28 @@
+{
+  "name": "automationplaywright",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx playwright test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Aldrin-afk/Playwright-Learnings.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Aldrin-afk/Playwright-Learnings/issues"
+  },
+  "homepage": "https://github.com/Aldrin-afk/Playwright-Learnings#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.30.0"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.0.3",
+    "jest": "^29.4.2"
+  }
+}
