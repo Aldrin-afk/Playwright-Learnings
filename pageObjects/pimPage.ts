@@ -49,6 +49,10 @@ export class PIMPage {
     readonly reportToDetails: any;
     readonly employeeSearchInformation: any;
     readonly thrash: string;
+    readonly searchEmployeeReports: any;
+    readonly employeeList: any;
+    readonly edit: any;
+    readonly editEmployeeReports: any;
 
     constructor(page: Page) {
         this.page = page;
@@ -132,8 +136,24 @@ export class PIMPage {
             jobTitle: `//label[text()="Job Title"]/../../..//div[@class="oxd-select-text--after"]`,
             subUnit: `//label[text()="Sub Unit"]/../../..//div[@class="oxd-select-text--after"]`
         }
+        this.searchEmployeeReports = {
+            reportsMenuLink: '//a[contains(text(),"Employee List")]',
+            reportNameSearch: `//label[text()='Report Name']/../..//div/input`,
+        }
+        this.editEmployeeReports = {
+            clearBox: `(//span[text()='Configuration ']/following::input)[1]`,
+            criteria: `//label[text()="Selection Criteria"]/../../..//div[@class="oxd-select-text--after"]`,
+            addreport: `(//i[@class='oxd-icon bi-plus'])`,
+            editFields: `//span[text()='Employee Last Name ']//i[@class="oxd-icon bi-x --clear"]`,
+            displayFieldGroup: `//label[text()="Select Display Field Group"]/../../..//div[@class="oxd-select-text--after"]`,
+            displayField: `//label[text()="Select Display Field"]/../../..//div[@class="oxd-select-text--after"]`,
+            reportTable: `div.content-wrapper`,
+            recordsCount: `//div[@class='oxd-report-table-header']//span[1]`
+        }
+        this.employeeList = '//a[contains(text(),"Employee List")]';
         this.addEmployee = '//a[contains(text(),"Add Employee")]';
-        this.thrash=`(//i[@class='oxd-icon bi-trash'])`;
+        this.thrash = `(//i[@class='oxd-icon bi-trash'])`;
+        this.edit = `//i[@class='oxd-icon bi-pencil-fill']`;
     }
 
     async clearTextBoxValues(locatorValue: any) {
@@ -220,7 +240,7 @@ export class PIMPage {
     };
 
     async clickEmployeeListMenu() {
-        await this.page.waitForSelector(this.addEmployee);
+        await this.page.waitForSelector(this.employeeList);
         await this.page.getByRole('link', { name: 'Employee List' }).click();
         await this.page.waitForSelector(`.orangehrm-background-container`);
         await this.page.waitForTimeout(5000);
@@ -244,6 +264,13 @@ export class PIMPage {
         await this.page.waitForSelector(this.dependentsDetails.dependentsMenuLink);
         await this.page.getByRole('link', { name: 'Dependents' }).click();
         await this.page.waitForSelector(this.container);
+        await this.page.waitForTimeout(5000);
+    };
+
+    async clickReportsMenu() {
+        await this.page.waitForSelector(this.searchEmployeeReports.reportsMenuLink);
+        await this.page.getByRole('link', { name: 'Reports' }).click();
+        await this.page.waitForSelector(`.orangehrm-background-container`);
         await this.page.waitForTimeout(5000);
     };
 

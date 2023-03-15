@@ -194,6 +194,53 @@ test.describe('Search Employee List informations', () => {
     test('Checking the checkbox and performing delete operation for the existing Employee Information', async () => {
         await pimPage.click(pimPage.attachmentCheckBox);
         await pimPage.deleteAttachedFile("save");
+    });
+});
+
+test.describe('Search Employee Reports informations', () => {
+    test('Filling Employee Reports and searching for the existing Employee Reports', async () => {
+        await pimPage.clickReportsMenu();
+        await pimPage.fillTextBoxValues(pimPage.searchEmployeeReports.reportNameSearch, 'PIM Sample');
+        await pimPage.selecDropdownOption(pimPage.searchEmployeeReports.reportNameSearch, 'PIM Sample Report');
+        await pimPage.clickElementWithIndex(pimPage.save, 1);
+        await page.waitForTimeout(5000);
+    });
+
+    test('Checking the checkbox and performing edit operation for the existing Employee Information', async () => {
+        await pimPage.click(pimPage.attachmentCheckBox);
+        await pimPage.deleteAttachedFile("cancel");
+        await pimPage.deleteAttachedFile("save");
+    });
+
+    test('Searching for the existing Employee Reports and editing Report', async () => {
+        await pimPage.clearTextBoxValues(pimPage.searchEmployeeReports.reportNameSearch);
+        await pimPage.fillTextBoxValues(pimPage.searchEmployeeReports.reportNameSearch, 'All Employee Sub Unit Hierarchy');
+        await pimPage.selecDropdownOption(pimPage.searchEmployeeReports.reportNameSearch, 'All Employee Sub Unit Hierarchy Report');
+        await pimPage.clickElementWithIndex(pimPage.save, 1);
+        await page.waitForTimeout(5000);
+        await pimPage.click(pimPage.attachmentCheckBox);
+        await pimPage.click(pimPage.edit);
+        await page.waitForTimeout(2000);
+    });
+
+    test('Editing the existing Report and Adding an Employee Name and verify the employee is added', async () => {
+        await pimPage.clearTextBoxValues(pimPage.searchEmployeeReports.reportNameSearch);
+        await pimPage.fillTextBoxValues(pimPage.searchEmployeeReports.reportNameSearch, 'All Employee Sub Unit Hierarchy Report Edited');
+        await page.waitForTimeout(2000);
+        await pimPage.selecDropdownOption(pimPage.editEmployeeReports.criteria, 'Employee Name');
+        await pimPage.clickElementWithIndex(pimPage.editEmployeeReports.addreport, 0);
+        await pimPage.fillTextBoxValues(pimPage.employeeSearchInformation.employeeName, 'Cecil');
+        await pimPage.selecDropdownOption(pimPage.employeeSearchInformation.employeeName, 'Cecil Bonaparte');
+        await pimPage.selecDropdownOption(pimPage.editEmployeeReports.displayFieldGroup, 'Personal');
+        await pimPage.click(pimPage.editEmployeeReports.editFields);
+        await pimPage.selecDropdownOption(pimPage.editEmployeeReports.displayField, 'Employee Last Name');
+        await pimPage.clickElementWithIndex(pimPage.editEmployeeReports.addreport, 1);
+        await pimPage.clickElementWithIndex(pimPage.save, 1);
+        await page.waitForTimeout(10000);
+        let table = await page.locator(pimPage.editEmployeeReports.reportTable).allInnerTexts();
+        expect(table.toString()).toBe(`Cecil\nBonaparte\nSoftware Engineer\nDevelopment\nHQ - CA, USA`)
+        let record = await page.locator(pimPage.editEmployeeReports.recordsCount).allTextContents();
+        expect(record.toString()).toBe(`(1) Record Found`);
         // await new Promise(() => { });
     });
 });
