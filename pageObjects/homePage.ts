@@ -19,4 +19,11 @@ export class HomePage {
         await this.page.waitForSelector(this.pimContainer);
         await this.page.waitForTimeout(2000);
     };
+
+    async clickAdminMenu() {
+        await (await this.page.waitForSelector(this.pimHeader)).waitForElementState('stable');
+        await this.page.getByRole('link', { name: 'Admin' }).click();
+        await this.page.waitForSelector(this.pimContainer);
+        await this.page.waitForTimeout(2000);
+    };
 }
