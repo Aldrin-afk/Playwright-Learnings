@@ -29,7 +29,14 @@ export class AdminPage {
     organizationLocators: any;
     locationsLocator: any;
     structureLocator: any;
-    popupStructureDeleteButton: string;
+    skillsLocator: any;
+    educationLocator: any;
+    licenseLocator: any;
+    languageLocator: any;
+    membershipLocator: any;
+    corpBrandingLocator: any;
+    configurationLocators: any;
+    name: string;
 
     constructor(page: Page) {
         this.page = page;
@@ -47,8 +54,7 @@ export class AdminPage {
         this.note = `//label[text()='Note']/following::textarea`;
         this.confirmationPopup = 'div.orangehrm-dialog-popup';
         this.popupText = 'p.oxd-text--card-body';
-        this.popupDeleteButton = '(//div[@class="-modal-footer"]//button)[2]';
-        this.popupStructureDeleteButton = '(//div[@class="orangehrm-modal-footer"]//button)[2]';
+        this.popupDeleteButton = '(//div[@class="orangehrm-modal-footer"]//button)[2]';
 
         this.adminHeadersLocators = {
             userManagementMenu: `//span[text()='User Management ']`,
@@ -64,8 +70,24 @@ export class AdminPage {
             organizationMenu: `//span[text()='Organization ']`,
             generalInfoDropDownMenu: `//span[text()="Organization "]/..//ul[@class="oxd-dropdown-menu"]/..//a[text()="General Information"]`,
             locationsDropDownMenu: `//span[text()="Organization "]/..//ul[@class="oxd-dropdown-menu"]/..//a[text()="Locations"]`,
-            structureDropDownMenu: `//span[text()="Organization "]/..//ul[@class="oxd-dropdown-menu"]/..//a[text()="Structure"]`
+            structureDropDownMenu: `//span[text()="Organization "]/..//ul[@class="oxd-dropdown-menu"]/..//a[text()="Structure"]`,
 
+            qualificationsMenu: `//span[text()='Qualifications ']`,
+            skillsDropDownMenu: `//span[text()="Qualifications "]/..//ul[@class="oxd-dropdown-menu"]/..//a[text()="Skills"]`,
+            educationDropDownMenu: `//span[text()="Qualifications "]/..//ul[@class="oxd-dropdown-menu"]/..//a[text()="Education"]`,
+            licensesDropDownMenu: `//span[text()="Qualifications "]/..//ul[@class="oxd-dropdown-menu"]/..//a[text()="Licenses"]`,
+            languagesDropDownMenu: `//span[text()="Qualifications "]/..//ul[@class="oxd-dropdown-menu"]/..//a[text()="Languages"]`,
+            membershipsDropDownMenu: `//span[text()="Qualifications "]/..//ul[@class="oxd-dropdown-menu"]/..//a[text()="Memberships"]`,
+
+            nationalitiesMenu: `//a[text()='Nationalities']`,
+            corpBrandingMenu: `//a[text()='Corporate Branding']`,
+
+            configurationMenu: `//span[text()='Configuration ']`,
+            germanconfigurationMenu: `//span[text()='Konfiguration ']`,
+            emailConfigurationDropDownMenu: `//span[text()="Configuration "]/..//ul[@class="oxd-dropdown-menu"]/..//a[text()="Email Configuration"]`,
+            emailSubscriptionsDropDownMenu: `//span[text()="Configuration "]/..//ul[@class="oxd-dropdown-menu"]/..//a[text()="Email Subscriptions"]`,
+            localizationDropDownMenu: `//span[text()="Configuration "]/..//ul[@class="oxd-dropdown-menu"]/..//a[text()="Localization"]`,
+            germanLocalizationDropDownMenu: `//span[text()="Konfiguration "]/..//ul[@class="oxd-dropdown-menu"]/..//a[text()="Lokalisierung"]`
         }
         this.userManagementLocators = {
             userName: `//label[text()="Username"]/../..//div/input`,
@@ -128,7 +150,48 @@ export class AdminPage {
             name: `//label[text()="Name"]/../..//div/input`,
             description: `//label[text()='Description']/following::textarea`
         }
+
+        this.skillsLocator = {
+            name: `//label[text()="Name"]/../..//div/input`,
+            description: `//label[text()='Description']/following::textarea`
+        }
+        this.educationLocator = {
+            level: `//label[text()="Level"]/../..//div/input`
+        }
+        this.licenseLocator = {
+            name: `//label[text()="Name"]/../..//div/input`,
+        }
+        this.languageLocator = {
+            name: `//label[text()="Name"]/../..//div/input`,
+        }
+        this.membershipLocator = {
+            name: `//label[text()="Name"]/../..//div/input`,
+        }
+        this.corpBrandingLocator = {
+            primaryColor: `//label[text()="Primary Color"]/../../..//div[@class='oxd-color-input-preview']`,
+            secondaryColor: `//label[text()="Secondary Color"]/../../..//div[@class='oxd-color-input-preview']`,
+            primaryFontColor: `//label[text()="Primary Font Color"]/../../..//div[@class='oxd-color-input-preview']`,
+            secondaryFontColor: `//label[text()="Secondary Font Color"]/../../..//div[@class='oxd-color-input-preview']`,
+            primaryGradientColor1: `//label[text()="Primary Gradient Color 1"]/../../..//div[@class='oxd-color-input-preview']`,
+            primaryGradientColor2: `//label[text()="Primary Gradient Color 2"]/../../..//div[@class='oxd-color-input-preview']`,
+            hex: `(//label[text()='HEX']/following::input)[1]`
+        }
+        this.configurationLocators = {
+            mailSentAs: `//label[text()="Mail Sent As"]/../..//div/input`,
+            secureSMTP: `//label[text()="SECURE SMTP"]/../../..//div[@class='oxd-radio-wrapper']//input[@type='radio']`,
+            sMTP: `//label[text()="SMTP"]/../../..//div[@class='oxd-radio-wrapper']//input[@type='radio']`,
+            sendMail: `//label[text()="Sendmail"]/../../..//div[@class='oxd-radio-wrapper']//input[@type='radio']`,
+            sendTestMail: `//p[text()="Send Test Mail"]/../../..//div[@class='oxd-switch-wrapper']//input[@type='checkbox']`,
+
+            leaveApplications: `//div[text()="Leave Applications"]/../../..//div[@class='oxd-switch-wrapper']//input[@type='checkbox']`,
+            language: `//label[text()="Language"]/../../..//div[@class="oxd-select-text--after"]`,
+            dateFormat: `//label[text()="Date Format"]/../../..//div[@class="oxd-select-text--after"]`,
+            germanlanguage: `//label[text()="Sprache"]/../../..//div[@class="oxd-select-text--after"]`,
+            germandateFormat: `//label[text()="Datumsformat"]/../../..//div[@class="oxd-select-text--after"]`
+        }
         this.edit = `//i[@class='oxd-icon bi-pencil-fill']`;
+        this.name = `//label[text()="Name"]/../..//div/input`;
+
     };
 
     async clickMenu(locator: any, menuLink: string) {
@@ -151,6 +214,7 @@ export class AdminPage {
 
     async clickSave(locatorValue: string, index: number, messageToVerify?: string) {
         await this.page.locator(locatorValue).nth(index).click();
+        await this.page.waitForTimeout(1000);
         expect(await this.getToastMessage()).toEqual(messageToVerify);
         await this.clickCloseIcon();
     };
@@ -206,6 +270,11 @@ export class AdminPage {
         }
     };
 
+    async bannerUploadFile(type: any, filePath: any) {
+        await this.page.setInputFiles(`//label[text()="${type}"]/../../..//input[@class='oxd-file-input']`, filePath);
+        await this.page.waitForTimeout(3000);
+    };
+
     async editRow(fillName: any) {
         this.page.locator(`//div[text()='${fillName}']/../..//i[@class='oxd-icon bi-pencil-fill']`).click();
     };
@@ -218,12 +287,25 @@ export class AdminPage {
         this.page.locator(`//div[contains(text(), '${fillName}')]/../..//i[@class='oxd-icon bi-plus']`).click();
     };
 
-    async deleteStructure(fillName: any) {
-        this.page.locator(`//div[contains(text(), '${fillName}')]/../..//i[@class='oxd-icon bi-trash-fill']`).click();
-        await this.page.waitForSelector(this.confirmationPopup);
-        expect(await this.page.locator(this.popupText).textContent()).toEqual(Constants.popupText.text);
-        await this.page.locator(this.popupStructureDeleteButton).click();
-        expect(this.page.locator(this.tableRow).first()).not.toBeVisible();
+    async addPerson(fillName: any) {
+        this.page.locator(`//div[contains(text(), '${fillName}')]/../..//i[@class='oxd-icon bi-person-plus-fill']`).click();
+    }
+
+    async deleteFileStructure(confirmation: string, fillName: any) {
+        if (confirmation == "structure") {
+            this.page.locator(`//div[contains(text(), '${fillName}')]/../..//i[@class='oxd-icon bi-trash-fill']`).click();
+            await this.page.waitForSelector(this.confirmationPopup);
+            expect(await this.page.locator(this.popupText).textContent()).toEqual(Constants.popupText.text);
+            await this.page.locator(this.popupDeleteButton).click();
+            expect(this.page.locator(this.tableRow).first()).not.toBeVisible();
+        }
+        else {
+            this.page.locator(`//div[text()='${fillName}']/../..//i[@class='oxd-icon bi-trash']`).first().click();
+            await this.page.waitForSelector(this.confirmationPopup);
+            expect(await this.page.locator(this.popupText).textContent()).toEqual(Constants.popupText.text);
+            await this.page.locator(this.popupDeleteButton).click();
+            expect(this.page.locator(this.tableRow).first()).not.toBeVisible();
+        }
     };
 
     async deleteFileRecord(confirmation: string, fillName: string) {

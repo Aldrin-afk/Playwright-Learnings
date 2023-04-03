@@ -156,51 +156,64 @@ export class PIMPage {
         this.edit = `//i[@class='oxd-icon bi-pencil-fill']`;
     }
 
+    // This function is used to "clear" the "textbox" values
     async clearTextBoxValues(locatorValue: any) {
         await this.page.locator(locatorValue).fill('');
         await this.page.waitForTimeout(1000);
     };
 
+    // This function is used to verify the presence of "Delete" button and return the boolean value
     async isDeleteButtonPresent() {
         return await this.page.locator(this.deleteSelectedButton).isVisible();
     }
 
+    // This function is used to fill the "textbox" values
     async fillTextBoxValues(locatorValue: any, fillValue: any) {
         await (await this.page.waitForSelector(locatorValue)).waitForElementState("stable");
         await this.page.locator(locatorValue).type(fillValue);
+        await this.page.waitForTimeout(2000);
     };
 
+    // This function is used to fill the "Date" textbox values
     async fillDateValue(locatorValue: any, fillValue: any) {
         await this.page.locator(locatorValue).fill(fillValue);
     };
 
+    // This function is used to click the dropdown and "select the passed value"
     async selecDropdownOption(locator: any, optionValue: any) {
         await this.click(locator);
         await this.page.getByRole('option', { name: optionValue }).getByText(optionValue, { exact: true }).click();
     };
 
+    // This function is used to click on the "Save" button
     async clickSave(locatorValue: string, index: number, messageToVerify?: string) {
         await this.page.locator(locatorValue).nth(index).click();
         expect(await this.getToastMessage()).toEqual(messageToVerify);
         await this.clickCloseIcon();
     }
 
+    // This function returns the "toast message text"
     async getToastMessage() {
         return await this.page.locator(this.toastMessage).textContent();
     }
 
+    // This function is used to click on the "Close" Icon of the toast message
     async clickCloseIcon() {
         await this.page.locator(this.closeIcon).click();
     }
 
+    // This function is used to "click on the element"
     async click(locator: any) {
         await this.page.locator(locator).click({ force: true });
     }
 
+    // This function is used to "click on the element with index"
     async clickElementWithIndex(locatorValue: string, index: number) {
         await this.page.locator(locatorValue).nth(index).click();
+        await this.page.waitForTimeout(3000);
     }
 
+    // This function is for "uploading the file" and clicking on Save and verifying cancel button functionality
     async uploadFile(filePath: any, value: boolean) {
         await this.click(this.addButton);
         await this.page.waitForSelector(this.browseButton);
@@ -218,6 +231,7 @@ export class PIMPage {
         }
     }
 
+    // This function is used to "delete the existing files" and asserting
     async deleteExistingFiles() {
         if (await this.isDeleteButtonPresent()) {
             await (await this.page.waitForSelector(this.deleteSelectedButton)).waitForElementState("stable");
@@ -232,6 +246,7 @@ export class PIMPage {
         }
     }
 
+    // This function is used to select AddEmployeeMenu
     async clickAddEmployeeMenu() {
         await this.page.waitForSelector(this.addEmployee);
         await this.page.getByRole('link', { name: 'Add Employee' }).click();
@@ -239,6 +254,7 @@ export class PIMPage {
         await this.page.waitForTimeout(5000);
     };
 
+    // This function is used to select EmployeeListMenu
     async clickEmployeeListMenu() {
         await this.page.waitForSelector(this.employeeList);
         await this.page.getByRole('link', { name: 'Employee List' }).click();
@@ -246,6 +262,7 @@ export class PIMPage {
         await this.page.waitForTimeout(5000);
     };
 
+    // This function is used to select ContactDetailsMenu
     async clickContactDetailsMenu() {
         await this.page.waitForSelector(this.contactDetails);
         await this.page.getByRole('link', { name: 'Contact Details' }).click();
@@ -253,6 +270,7 @@ export class PIMPage {
         await this.page.waitForTimeout(5000);
     };
 
+    // This function is used to select EmergencyContactsMenu
     async clickEmergencyContactsMenu() {
         await this.page.waitForSelector(this.emergencyContactDetails.emergencyContactMenuLink);
         await this.page.getByRole('link', { name: 'Emergency Contacts' }).click();
@@ -260,6 +278,7 @@ export class PIMPage {
         await this.page.waitForTimeout(5000);
     };
 
+    // This function is used to select DependentsMenu
     async clickDependentsMenu() {
         await this.page.waitForSelector(this.dependentsDetails.dependentsMenuLink);
         await this.page.getByRole('link', { name: 'Dependents' }).click();
@@ -267,6 +286,7 @@ export class PIMPage {
         await this.page.waitForTimeout(5000);
     };
 
+    // This function is used to select EReportsMenu
     async clickReportsMenu() {
         await this.page.waitForSelector(this.searchEmployeeReports.reportsMenuLink);
         await this.page.getByRole('link', { name: 'Reports' }).click();
@@ -274,13 +294,16 @@ export class PIMPage {
         await this.page.waitForTimeout(5000);
     };
 
+    // This function is used to select Menu
     async clickMenu(locator, menuLink) {
         await this.page.waitForSelector(locator);
         await this.page.getByRole('link', { name: menuLink }).click();
-        await this.page.waitForSelector(this.container);
+        await (await this.page.waitForSelector(this.container)).waitForElementState("stable");
+        await this.page.waitForLoadState("networkidle", { timeout: 10000 });
         await this.page.waitForTimeout(5000);
     }
 
+    // This function is used to delete the existing files and verifying confirmation of "Yes" and "No" button
     async deleteAttachedFile(confirmation: string) {
         if (confirmation == "cancel") {
             await this.page.locator(this.deleteIcon).first().click();
@@ -298,6 +321,7 @@ export class PIMPage {
         }
     };
 
+    // This function is used to filling the multiple textbox values using "for of" loop
     async fillFieldValues(namesLocators: any, values: any) {
         for (const locator of namesLocators) {
             await this.clearTextBoxValues(locator);

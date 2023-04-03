@@ -10,16 +10,50 @@
     "TitleVerification": {
         "loginPageTitle": "OrangeHRM"
     },
+    "employeeDetails": {
+        "firstName": "Aldrin",
+        "middleName": "F",
+        "lastName": "Kardoze",
+        "employeeId": "999"
+    },
+    "employeeIDs": {
+        "otherId": "666",
+        "driverLicenseNumber": "123",
+        "ssnNumber": "110",
+        "sinNumber": "111"
+    },
+    "EmployeeContactDetails": {
+        "street1": "PUL",
+        "street2": "RAM",
+        "city": "CBE",
+        "state": "TN",
+        "zip": "641045",
+        "home": "7777777771",
+        "mobile": "777777772",
+        "work": "7777777773",
+        "workEmail": "afk@hrm.com",
+        "otherEmail": "kfa@hrm.com"
+    },
+    "EmergencyContacts": {
+        "name": "Jackie Chan",
+        "relationship": "Father",
+        "homeTelephone": "7246363727",
+        "mobile": "77777775",
+        "workTelephone": "77777776"
+    },
     "sucessMsg": {
         "successfulUpdatedMsg": "Successfully Updated",
         "successfulDeletedMsg": "Successfully Deleted",
-        "sucessfulSavedMsg": "Successfully Saved"
+        "sucessfulSavedMsg": "Successfully Saved",
+        "germansuccessfulUpdatedMsg": "Aktualisiert"
     },
     "fillText": {
         "comment": "Text file has been uploaded"
     },
     "popupText": {
-        "text": "The selected record will be permanently deleted. Are you sure you want to continue?"
+        "text": "The selected record will be permanently deleted. Are you sure you want to continue?",
+        "purge": "You are about to purge selected candidates permanently. Are you sure you want to continue? This operation cannot be undone",
+        "item": "The selected item will be permanently deleted. Are you sure you want to continue?"
     },
     "noRecordsText": "No Records Found"
 }
