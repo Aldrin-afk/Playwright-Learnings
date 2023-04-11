@@ -1,0 +1,26 @@
+{
+    "valuesToInsert": {
+        "email": "raz@gmail.com",
+        "password": "raz@123"
+    },
+    "valuesToVerify": {
+        "email": "johndoe@example.com",
+        "password": "Hello@123"
+    },
+    "valuesToDelete": {
+        "paswordUpdated": "Ahem@123",
+        "email": "raz@gmail.com"
+    },
+    "CURDAssertions": {
+        "read": [
+            {
+                "email": "johndoe@example.com",
+                "password": "Hello@123"
+            }
+        ],
+        "push": {
+            "email": "johndoe@example.com",
+            "password": "Hello@123"
+        }
+    }
+}

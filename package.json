@@ -1,0 +1,19 @@
+{
+  "name": "mysql-grafana-integration",
+  "version": "1.0.0",
+  "description": "Playwright with MySQL and Grafana Visualizer Integration",
+  "main": "index.js",
+  "scripts": {
+    "mysql": "npx playwright test playwright-mysql.spec.ts",
+    "mysqlcrud": "npx playwright test playwright-mysql-crud.spec.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.32.2"
+  },
+  "dependencies": {
+    "mysql2": "^3.2.0"
+  }
+}
