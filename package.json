@@ -1,0 +1,20 @@
+{
+  "name": "visual-comparison",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test-vc": "npx playwright test visualComparison.test.ts",
+    "test-vc-us": "npx playwright test visualComparison.test.ts --update-snapshots"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.32.3"
+  },
+  "dependencies": {
+    "pixelmatch": "^5.3.0",
+    "typescript": "^5.0.4"
+  }
+}
